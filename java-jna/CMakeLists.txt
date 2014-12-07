@@ -24,6 +24,9 @@ SET(JAVA_SOURCE_FILES
 # JNA jar
 SET(JNA_JAR "${CMAKE_CURRENT_SOURCE_DIR}/jna-4.1.0.jar"
     CACHE STRING "Location of jna.jar")
+IF(NOT EXISTS "${JNA_JAR}")
+    MESSAGE(FATAL_ERROR "JNA_JAR doesn't point to an existing file; please download the JAR or set the variable to the correct location")
+ENDIF()
 
 # Build Java classes
 FILE(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/java/bin")
