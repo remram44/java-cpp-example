@@ -1,6 +1,6 @@
 package edu.nyu.cpptest.app;
 
-import edu.nyu.cpptest.mylib.MyClass;
+import edu.nyu.cpptest.cpplib.MyClass;
 
 public class Main {
 

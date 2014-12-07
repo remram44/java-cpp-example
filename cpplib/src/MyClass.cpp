@@ -1,4 +1,4 @@
-#include "mylib/MyClass.h"
+#include "cpplib/MyClass.h"
 
 MyClass::MyClass(int nb)
   : m_nb(nb)
