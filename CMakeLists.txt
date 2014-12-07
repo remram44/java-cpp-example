@@ -6,6 +6,8 @@ PROJECT(java-cpp)
 # Recursively build components
 ADD_SUBDIRECTORY(cpplib)
 ADD_SUBDIRECTORY(java-swig)
+ADD_SUBDIRECTORY(java-jna)
+ADD_SUBDIRECTORY(java-jni)
 
 # Testing
 OPTION(BUILD_TESTSUITE "Build the test suite (requires CppUnit)" OFF)
