@@ -50,5 +50,20 @@ FOREACH(_java_file ${JAVA_SOURCE_FILES})
 ENDFOREACH()
 ADD_CUSTOM_TARGET(JavaJNAClasses ALL DEPENDS ${class_files})
 
-# TODO: testing
-# java -cp java-jna/java/bin:../java-jna/jna-4.1.0.jar:java-jna edu.nyu.cpptest.app.Main
+if(WIN32 AND NOT CYGWIN)
+    set(_JAVA_SEP ";")
+else()
+    set(_JAVA_SEP ":")
+endif()
+
+# Testing
+IF(BUILD_TESTS)
+    FIND_PACKAGE(Java COMPONENTS Runtime)
+    ADD_TEST(
+        NAME run-jna
+        COMMAND
+            "${Java_JAVA_EXECUTABLE}"
+            -cp java-jna/java/bin${_JAVA_SEP}${JNA_JAR}${_JAVA_SEP}java-jna
+            edu.nyu.cpptest.app.Main
+        WORKING_DIRECTORY "${CMAKE_BINARY_DIR}")
+ENDIF()

@@ -73,5 +73,15 @@ FOREACH(_java_file ${JAVA_SOURCE_FILES})
 ENDFOREACH()
 ADD_CUSTOM_TARGET(JavaSWIGClasses ALL DEPENDS ${class_files})
 
-# TODO: testing
-# java -cp java-swig/java/bin -Djava.library.path=java-swig edu.nyu.cpptest.app.Main
+# Testing
+IF(BUILD_TESTS)
+    FIND_PACKAGE(Java COMPONENTS Runtime)
+    ADD_TEST(
+        NAME run-swig
+        COMMAND
+            "${Java_JAVA_EXECUTABLE}"
+            -cp java-swig/java/bin
+            -Djava.library.path=java-swig
+            edu.nyu.cpptest.app.Main
+        WORKING_DIRECTORY "${CMAKE_BINARY_DIR}")
+ENDIF()

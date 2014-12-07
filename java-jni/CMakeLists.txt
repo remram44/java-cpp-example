@@ -59,5 +59,15 @@ SET_TARGET_PROPERTIES(
 TARGET_LINK_LIBRARIES(cpplib_jni cpplib)
 ADD_DEPENDENCIES(cpplib_jni JavaJNIHeaders)
 
-# TODO: testing
-# java -cp java-jni/java/bin -Djava.library.path=java-jni edu.nyu.cpptest.app.Main
+# Testing
+IF(BUILD_TESTS)
+    FIND_PACKAGE(Java COMPONENTS Runtime)
+    ADD_TEST(
+        NAME run-jni
+        COMMAND
+            "${Java_JAVA_EXECUTABLE}"
+            -cp java-jni/java/bin
+            -Djava.library.path=java-jni
+            edu.nyu.cpptest.app.Main
+        WORKING_DIRECTORY "${CMAKE_BINARY_DIR}")
+ENDIF()
