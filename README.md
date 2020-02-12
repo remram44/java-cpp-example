@@ -23,7 +23,7 @@ JNA
 
 JNA allows Java code to use C dynamic libraries directly. Because our library is in fact C++, a small wrapper is included that wraps it as C code.
 
-You will need the JNA jar to run this: https://github.com/twall/jna
+You will need the JNA jar to run this: https://github.com/java-native-access/jna
 
 JNI
 ---
